@@ -1,4 +1,5 @@
 <?php
+// RUN php -S 0.0.0.0:8000 to preview the site
 // Science Video Learning Platform - Single PHP File
 session_start();
 
@@ -76,7 +77,7 @@ $age_ranges = ['2-4', '4-6', '6-8', '8-10', '10-12', '12-14', '14-16'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Learning Platform</title>
+    <title>All Science Experiments</title>
     <style>
         * {
             margin: 0;
@@ -226,6 +227,52 @@ $age_ranges = ['2-4', '4-6', '6-8', '8-10', '10-12', '12-14', '14-16'];
             margin-bottom: 5px;
         }
 
+        .left-sidebar {
+    position: fixed;
+    left: -200px;   /* was left: -250px;  */
+    top: 0;
+    width: 200px;   /* was width: 250px;  */
+    height: 100vh;
+    background: #f8f9fa;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    padding-top: 80px;
+}
+
+.left-sidebar.open {
+    left: 0;
+}
+
+.creators-toggle {
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2a5298;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 16px;
+}
+
+.creators-content {
+    padding: 20px;
+}
+
+.main-container {
+    transition: margin-left 0.3s ease;
+}
+
+.main-container.shifted {
+    margin-left: 200px; /* was margin-left: 250px; */ 
+}
+
+
         .playlist-btn {
             position: absolute;
             top: 10px;
@@ -337,6 +384,27 @@ $age_ranges = ['2-4', '4-6', '6-8', '8-10', '10-12', '12-14', '14-16'];
     </style>
 </head>
 <body>
+
+
+<button class="creators-toggle" onclick="toggleLeftSidebar()">👥</button>
+
+<div class="left-sidebar" id="leftSidebar">
+    <div class="creators-content">
+        <h3 style="color: #2a5298; margin-bottom: 15px; text-align: left; margin-left: 20px;">Creators</h3> <!-- was text-align: center --> <!-- margin-left: 20px; i added this, i like it. -->
+        <?php foreach($creators as $creator): ?>
+            <div class="creator-item">
+                <a href="?creator=<?php echo urlencode($creator); ?>" style="text-decoration: none; color: inherit;">
+                    <?php echo htmlspecialchars($creator); ?>
+                </a>
+            </div>
+        <?php endforeach; ?>
+        <?php if($selected_creator): ?>
+            <div class="creator-item">
+                <a href="?" style="text-decoration: none; color: #2a5298;">← Show All Creators</a>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
 
 <?php if ($video_id): ?>
     <!-- Single Video View -->
@@ -475,25 +543,7 @@ $age_ranges = ['2-4', '4-6', '6-8', '8-10', '10-12', '12-14', '14-16'];
                 <?php endif; ?>
             </div>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <div class="sidebar-section">
-                    <div class="sidebar-title" onclick="toggleSidebar('creators')">Creators</div>
-                    <div class="sidebar-content" id="creators">
-                        <?php foreach($creators as $creator): ?>
-                            <div class="creator-item">
-                                <a href="?creator=<?php echo urlencode($creator); ?>" style="text-decoration: none; color: inherit;">
-                                    <?php echo htmlspecialchars($creator); ?>
-                                </a>
-                            </div>
-                        <?php endforeach; ?>
-                        <?php if($selected_creator): ?>
-                            <div class="creator-item">
-                                <a href="?" style="text-decoration: none; color: #2a5298;">← Show All Creators</a>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
+            <!-- Creator right Sidebar, i deleted this and made the creator sidebar on the left  -->
 
                 <div class="sidebar-section">
                     <div class="sidebar-title" onclick="toggleSidebar('playlists')">My Playlists</div>
@@ -522,6 +572,27 @@ function toggleSidebar(section) {
     const content = document.getElementById(section);
     content.classList.toggle('active');
 }
+
+
+function toggleLeftSidebar() {
+    const sidebar = document.getElementById('leftSidebar');
+    const mainContainer = document.querySelector('.main-container');
+    
+    sidebar.classList.toggle('open');
+    mainContainer.classList.toggle('shifted');
+}
+
+// // Close sidebar when clicking outside // I COULD DELETE THIS IF I DONT LIKE IT!!!!!!!!!!
+// document.addEventListener('click', function(event) {
+//     const sidebar = document.getElementById('leftSidebar');
+//     const toggle = document.querySelector('.creators-toggle');
+    
+//     if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
+//         sidebar.classList.remove('open');
+//         document.querySelector('.main-container').classList.remove('shifted');
+//     }
+// });
+
 
 // Playlist functionality
 let playlists = JSON.parse(localStorage.getItem('sciencePlaylists') || '{}');
