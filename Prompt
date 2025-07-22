@@ -1,0 +1,17 @@
+(In Claude Sonnet 4)
+I would like you to make a website.
+i want it to be coded in PHP.
+i want it to be 1 big long php file.
+i want the code to be extremely simple and straightforwards 
+i want it to have a banner on top
+i want the colors to be background white and the theme blue
+i want it to show boxes in rows and columns that have shadows and title and thumbnail that are links to youtube videos,
+ that when you press on them it opens up a new page in a new tab that is a plain page that just has the video being played in the middle of the page.
+i want there to be a bar in middle of the page under the banner, and this will be the main point of the website, that has selections for a science subject and an age number that you press as buttons, 2 at a time from 2 to 16, like 2-4, 4-6, and the videos all have a subject and age labeled to them and when you select the subject and age only the videos with those age and subject labels show up under the bar.
+i want the backend of the website to be a excel sheet or csv file, whichevers simpler, i want it to be very simple, with the video links, video titles, links to the videos thumbnails, video subject(there could be more than one), video age(there could be more than one), and other tags that i can filter by like some equipment used in the video that i will add or creator of the video.
+I want the videos to be shown based off their subject and age, and also on the side of the bar i want there to be a button to expand a menu of filters where you can filter by tools used in the video that i will add, and cost of the tools in the video that i will also add, and other things.
+on the right hand side i want an expandable menu that shows creators of the videos from up to down, there will be many, and when you click on the the creator it changes the banner to a banner dedicated to them and all the videos under the bar will only be their videos.
+on the right hand side there will be an expandable menu that shows playlist, and when you expand a playlist is shows all the videos in the playlist on the right hand expandable menu, and if you click on the playlist itself it brings you to a new page with just the videos from that playlist.
+on the main page you will be able to add a video to a playlist by clicking on an icon within the box of that video, they can create multiple playlists, and they can share links to the playlists that they made.
+There will be no accounts, you will not be able to make an account.
+the playlists will be stored in the browser cookies or something like that.
