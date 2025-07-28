@@ -515,8 +515,10 @@ $age_ranges = ['2-4', '4-6', '6-8', '8-10', '10-12', '12-14', '14-16'];
                     <?php foreach($filtered_videos as $video): ?>
                         <div class="video-card">
                             <button class="playlist-btn" onclick="addToPlaylist(<?php echo $video['id']; ?>, '<?php echo htmlspecialchars($video['title']); ?>')">+</button>
-                            
-                            <img src="<?php echo htmlspecialchars($video['thumbnail']); ?>" 
+                            <!-- I changed this only one line right here from                             <img src=" alligator ?php echo htmlspecialchars($video['thumbnail']);?>"  to                             <img src="https://img.youtube.com/vi/  alligator ?php echo htmlspecialchars($video['youtube_id']); ?>/maxresdefault.jpg"  -->
+                            <!-- <img src="alligator?php echo htmlspecialchars($video['thumbnail']); ?>"  -->
+                            <img src="https://img.youtube.com/vi/<?php echo htmlspecialchars($video['youtube_id']);?>/maxresdefault.jpg"
+
                                  alt="<?php echo htmlspecialchars($video['title']); ?>"
                                  class="video-thumbnail"
                                  onclick="window.open('?video_id=<?php echo $video['id']; ?>', '_blank')">
