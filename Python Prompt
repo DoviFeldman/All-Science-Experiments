@@ -1,0 +1,11 @@
+make me a python scraper bot that just gets me all the links to all the videos, and the titles of the videos, and channel name from a youtube channel that i input(i will do it with a few different ones), and it puts them into a CSV file in this format and order.
+i will be changing the channel and redoing it a few different times
+i want it to get that data from the entire channel.
+i will be running this on github codespaces.
+Make the code EXTREMELY SIMPLE, and super simple to run.
+let me also have an option to test it with the first 6 videos of that channel.
+i will be adding in the subject, age, and tools, and cost myself, leave it that i can replace the values myself.
+
+  ['id' => 1, 'title' => 'Basic Chemistry Reactions', 'youtube_id' => 'dQw4w9WgXcQ', 'subject' => 'Chemistry', 'age' => '6-8', 'tools' => 'Test tubes,Beakers', 'cost' => 'Low', 'creator' => 'Science Bob'],
+    ['id' => 2, 'title' => 'Physics Fun with Magnets', 'youtube_id' => 'dQw4w9WgXcQ',  'subject' => 'Physics', 'age' => '4-6', 'tools' => 'Magnets,Iron filings', 'cost' => 'Low', 'creator' => 'Physics Girl'],
+    ['id' => 3, 'title' => 'Biology Cell Structure', 'youtube_id' => 'dQw4w9WgXcQ',  'subject' => 'Biology', 'age' => '10-12', 'tools' => 'Microscope,Slides', 'cost' => 'High', 'creator' => 'Biology Bytes'],
