@@ -3,6 +3,8 @@
 Simple YouTube Channel Scraper
 Extracts video data from a YouTube channel and saves to CSV
 """
+# I HAVE TO PUT IN THE /VIDEOS FOR IT TO WORK OTHERWISE IT WORK WORK, BUT IT WORKS WHEN I ADD THAT LIKE THIS https://www.youtube.com/@CodeBullet/videos
+
 
 import csv
 import subprocess
