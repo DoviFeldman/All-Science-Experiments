@@ -3,15 +3,31 @@
 // Science Video Learning Platform - Single PHP File
 session_start();
 
-// Sample CSV data structure - you can replace this with actual CSV file reading
-$videos_data = [
-    ['id' => 1, 'title' => 'Basic Chemistry Reactions', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Chemistry', 'age' => '6-8', 'tools' => 'Test tubes,Beakers', 'cost' => 'Low', 'creator' => 'Science Bob'],
-    ['id' => 2, 'title' => 'Physics Fun with Magnets', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Physics', 'age' => '4-6', 'tools' => 'Magnets,Iron filings', 'cost' => 'Low', 'creator' => 'Physics Girl'],
-    ['id' => 3, 'title' => 'Biology Cell Structure', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Biology', 'age' => '10-12', 'tools' => 'Microscope,Slides', 'cost' => 'High', 'creator' => 'Biology Bytes'],
-    ['id' => 4, 'title' => 'Simple Math Patterns', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Math', 'age' => '2-4', 'tools' => 'Counting blocks', 'cost' => 'Low', 'creator' => 'Math Magic'],
-    ['id' => 5, 'title' => 'Advanced Chemistry Lab', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Chemistry', 'age' => '14-16', 'tools' => 'Bunsen burner,Lab equipment', 'cost' => 'High', 'creator' => 'Science Bob'],
-    ['id' => 6, 'title' => 'Earth Science Weather', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Earth Science', 'age' => '8-10', 'tools' => 'Thermometer,Rain gauge', 'cost' => 'Medium', 'creator' => 'Earth Explorer'],
-];
+// // Sample CSV data structure - you can replace this with actual CSV file reading
+// $videos_data = [
+//     ['id' => 1, 'title' => 'Basic Chemistry Reactions', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Chemistry', 'age' => '6-8', 'tools' => 'Test tubes,Beakers', 'cost' => 'Low', 'creator' => 'Science Bob'],
+//     ['id' => 2, 'title' => 'Physics Fun with Magnets', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Physics', 'age' => '4-6', 'tools' => 'Magnets,Iron filings', 'cost' => 'Low', 'creator' => 'Physics Girl'],
+//     ['id' => 3, 'title' => 'Biology Cell Structure', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Biology', 'age' => '10-12', 'tools' => 'Microscope,Slides', 'cost' => 'High', 'creator' => 'Biology Bytes'],
+//     ['id' => 4, 'title' => 'Simple Math Patterns', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Math', 'age' => '2-4', 'tools' => 'Counting blocks', 'cost' => 'Low', 'creator' => 'Math Magic'],
+//     ['id' => 5, 'title' => 'Advanced Chemistry Lab', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Chemistry', 'age' => '14-16', 'tools' => 'Bunsen burner,Lab equipment', 'cost' => 'High', 'creator' => 'Science Bob'],
+//     ['id' => 6, 'title' => 'Earth Science Weather', 'youtube_id' => 'dQw4w9WgXcQ', 'thumbnail' => 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg', 'subject' => 'Earth Science', 'age' => '8-10', 'tools' => 'Thermometer,Rain gauge', 'cost' => 'Medium', 'creator' => 'Earth Explorer'],
+// ];
+
+// new code from Claude that im pretty sure works perfectly for outside csv files 
+
+$csv_files = ['youtube_videos_test.csv']; // Your CSV files //$csv_files = ['file1.csv', 'file2.csv', 'file3.csv']; // Your CSV files
+$videos_data = [];
+
+foreach ($csv_files as $csv_file) {
+    if (($handle = fopen($csv_file, 'r')) !== FALSE) {
+        $header = fgetcsv($handle);
+        while (($row = fgetcsv($handle)) !== FALSE) {
+            $videos_data[] = array_combine($header, $row);
+        }
+        fclose($handle);
+    }
+}
+
 
 // Get current filters
 $selected_subject = isset($_GET['subject']) ? $_GET['subject'] : 'All';
