@@ -114,6 +114,8 @@ def main():
     
     # Get channel URL from user
     channel_url = input("Enter YouTube channel URL: ").strip()
+    channel_name = input("Enter channel name for filename: ").strip() # i just added this from calude, it looked simpler than the other code it gave me.
+
     
     if not channel_url:
         print("Error: Please provide a channel URL")
@@ -132,7 +134,8 @@ def main():
     if videos:
         # Generate filename
         suffix = "_test" if test_mode else ""
-        filename = f"youtube_videos{suffix}.csv"
+        #filename = f"youtube_videos{suffix}.csv"
+        filename = f"{channel_name}{suffix}.csv"
         
         # Save to CSV
         save_to_csv(videos, filename)
